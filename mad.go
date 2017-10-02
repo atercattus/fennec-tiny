@@ -201,7 +201,7 @@ func (mp3r *mp3Reader) ReadFrame(buf []int16) ([]int16, error) {
 }
 
 func (mp3r *mp3Reader) openMp3() error {
-	mp3r.mmap = C.mmap(unsafe.Pointer(uintptr(0)), C.size_t(mp3r.size), C.PROT_READ, C.MAP_PRIVATE, C.int(mp3r.fd.Fd()), C.__off_t(0))
+	mp3r.mmap = C.mmap(unsafe.Pointer(uintptr(0)), C.size_t(mp3r.size), C.PROT_READ, C.MAP_PRIVATE, C.int(mp3r.fd.Fd()), C.off_t(0))
 	if mp3r.mmap == nil {
 		return ErrMmapFail
 	}
